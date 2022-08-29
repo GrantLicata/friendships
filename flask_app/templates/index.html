@@ -57,16 +57,20 @@
 
             <div class="container">
                 <h1 class="mt-4">Create Friendship</h1>
-                <form action="/" method="post">
+                <form action="/add_friendship" method="post">
                     <label for="user" class="form-label mt-2">User:</label>
                     <select class="form-select" aria-label="Default select example" name="user">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
+                        <option selected>Select User</option>
+                        {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
+                        {% endfor %}
                     </select>
                     <label for="friend" class="form-label mt-3">Friend:</label>
                     <select class="form-select mb-3" aria-label="Default select example" name="friend">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
+                        <option selected>Select Friend</option>
+                        {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
+                        {% endfor %}
                     </select>
                     <button class="btn btn-secondary" type="submit">Create</button>
                 </form>

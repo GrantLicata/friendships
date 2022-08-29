@@ -7,7 +7,6 @@ class User:
         self.last_name = data['last_name']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.friends = []
 
     @classmethod
     def get_all(cls):
@@ -40,18 +39,5 @@ class User:
 
     @classmethod
     def create_friendship(cls, data):
-        query = "INSERT INTO users (first_name,last_name,email,created_at,updated_at) VALUES ( %(first_name)s , %(last_name)s , %(email)s , NOW() , NOW() );"
-        # data is a dictionary that will be passed into the save method from server.py
+        query = "INSERT INTO friendships (user_id, friend_id, created_at, updated_at) VALUES ( %(user_id)s , %(friend_id)s , NOW() , NOW() );"
         return connectToMySQL('Friendships').query_db( query, data )
-
-    @classmethod
-    def update(cls, data):
-        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = NOW() WHERE id = %(id)s;"
-        print(query)
-        return connectToMySQL('Friendships').query_db( query, data )
-
-    @classmethod
-    def delete(cls, data):
-        query = "DELETE FROM users WHERE id = %(id)s;"
-        return connectToMySQL('Friendships').query_db( query, data )
-
