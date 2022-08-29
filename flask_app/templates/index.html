@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS included here-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Friendships</title>
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid ">
+            <a class="navbar-brand text-warning" href="#"><strong>Friendships</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="d-flex">
+        <div class="container col-5" id="left-pane">
+            <h1>Friendships</h1>
+            <table class="table table-striped border mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">Friend</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for friendship in friends %}
+                    <tr>
+                        <td>{{ friendship.user_name }}</td>
+                        <td>{{ friendship.friend_name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+        <div class="container d-flex flex-column col-5" id="right-pane">
+            <div class="container">
+                <h1>Add User</h1>
+                <form action="/add_user" method="post">
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">First Name:</label>
+                        <input type="text" class="form-control" name="first_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Last Name:</label>
+                        <input type="text" class="form-control" name="last_name">
+                    </div>
+                    <button class="btn btn-secondary" type="submit">Add User</button>
+                </form>
+            </div>
+
+            <div class="container">
+                <h1 class="mt-4">Create Friendship</h1>
+                <form action="/" method="post">
+                    <label for="user" class="form-label mt-2">User:</label>
+                    <select class="form-select" aria-label="Default select example" name="user">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                    </select>
+                    <label for="friend" class="form-label mt-3">Friend:</label>
+                    <select class="form-select mb-3" aria-label="Default select example" name="friend">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                    </select>
+                    <button class="btn btn-secondary" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
